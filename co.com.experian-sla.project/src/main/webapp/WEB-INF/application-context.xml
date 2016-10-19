@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns:jdbc="http://www.springframework.org/schema/jdbc"
+    xmlns:jaxws="http://cxf.apache.org/jaxws"
+    xmlns:osgi="http://www.springframework.org/schema/osgi"
+    xsi:schemaLocation="
+                http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.1.xsd
+                http://www.springframework.org/schema/jdbc http://www.springframework.org/schema/jdbc/spring-jdbc-3.1.xsd
+                http://cxf.apache.org/jaxws http://cxf.apache.org/schemas/jaxws.xsd">
+    
+    <!-- ================================================================================================= -->
+    <!-- CONTEXT PropertyPlaceholderConfigurer -->         
+    <!-- ================================================================================================= -->
+    <bean class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
+    </bean>
+    <!-- ================================================================================================= -->
+    
+    <!-- ================================================================================================= -->
+    <!-- CLUSTERED SESSION CONFIGURATION -->         
+    <!-- ================================================================================================= -->
+    <bean id="redis.url" 		class="java.lang.String"><constructor-arg value="${REDIS_URL}"/></bean>
+    <bean id="redis.timeout" 	class="java.lang.String"><constructor-arg value="${REDIS_TIMEOUT}"/></bean>
+    <import resource="classpath:/co/com/experian/sla/apphub/api/session/context.xml" />
+    <!-- ================================================================================================= -->
+    
+    <!-- ================================================================================================= -->
+    <!-- PROXY CONFIGURATION -->         
+    <!-- ================================================================================================= -->
+    <bean id="env.routing" class="java.lang.String"><constructor-arg value="${routing}"/></bean>
+    <import resource="classpath:/co/com/experian/sla/apphub/api/proxy/context.xml" />
+    <bean scope="request" class="co.com.experian.sla.ebyington.AppHubRequestImpl" destroy-method="destroy" lazy-init="true"><constructor-arg><null/></constructor-arg></bean>
+    <!-- ================================================================================================= -->
+    
+    <!-- ================================================================================================= -->
+    <!-- STANDARD BEANS -->         
+    <!-- ================================================================================================= -->
+    <bean scope="singleton" class="co.com.experian.sla.ebyington.WebApp" 	factory-method="get" lazy-init="true"/>
+    <bean scope="request"	class="co.com.experian.sla.ebyington.WebSsn"	factory-method="create" lazy-init="true"/>
+    <bean scope="request"	class="co.com.experian.sla.ebyington.WebReq"	destroy-method="destroy"/>
+    <!-- ================================================================================================= -->
+    
+    <!-- ================================================================================================= -->
+    <!-- WEB SERVICE PROXIES -->         
+    <!-- ================================================================================================= -->
+	
+    <!-- ================================================================================================= -->
+    
+    <!-- ================================================================================================= -->
+    <!-- DISPATCH -->         
+    <!-- ================================================================================================= -->
+    <bean class="co.com.experian.sla.commons.dispatch.SimpleActionDispatcher">
+        <property name="handlers"><array>
+        	<bean class="co.com.experian.sla.apphub.api.proxy.dispatch.AH_CopyResponseContent"></bean>
+        	<bean class="co.com.experian.sla.apphub.api.proxy.dispatch.AH_Css"></bean>
+        	<bean class="co.com.experian.sla.apphub.api.proxy.dispatch.AH_JavaScript"></bean>
+        	<bean class="co.com.experian.sla.apphub.api.proxy.dispatch.AH_HeadCss"></bean>
+        	<bean class="co.com.experian.sla.apphub.api.proxy.dispatch.AH_HeadJavaScript"></bean>
+        	<bean class="co.com.experian.sla.apphub.api.proxy.dispatch.AH_LocalEndpoint"></bean>
+        	<bean class="co.com.experian.sla.apphub.api.proxy.dispatch.AH_FrameworkJSP"></bean>
+        	<bean class="co.com.experian.sla.apphub.api.proxy.dispatch.AH_NormalizeFramework"></bean>
+        	<bean class="co.com.experian.sla.apphub.api.proxy.dispatch.AH_ReadString"></bean>
+            
+            <bean class="co.com.experian.sla.business.dispatch.AH_BasicLogin"></bean>
+            <bean class="co.com.experian.sla.business.dispatch.AH_ExtendedLogin"></bean>
+			
+        </array></property>
+    </bean>
+    <!-- ================================================================================================= -->
+    
+</beans>
