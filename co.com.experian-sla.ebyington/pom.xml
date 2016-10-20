@@ -28,10 +28,9 @@
 	<!-- =========================================================================== -->
 
 	<dependencies>
-
 		<dependency>
 			<groupId>experian-sla</groupId>
-			<artifactId>experian-sla.commons</artifactId>
+			<artifactId>commons</artifactId>
 			<version>1.0</version>
 		</dependency>
 
@@ -42,36 +41,12 @@
 		</dependency>
 
 		<!-- =========================================================================== -->
-		<!-- EXPERIAN - SLA -->
-		<!-- =========================================================================== -->
-		<dependency>
-			<groupId>co.com.experian-sla</groupId>
-			<artifactId>co.com.experian-sla.commons</artifactId>
-			<version>1.0-SNAPSHOT</version>
-		</dependency>
-		<dependency>
-			<groupId>co.com.experian-sla</groupId>
-			<artifactId>co.com.experian-sla.app-hub-api</artifactId>
-			<version>1.0-SNAPSHOT</version>
-		</dependency>
-		<dependency>
-			<groupId>co.com.experian-sla</groupId>
-			<artifactId>co.com.experian-sla.business</artifactId>
-			<version>1.0-SNAPSHOT</version>
-		</dependency>
-		<dependency>
-			<groupId>co.com.experian-sla</groupId>
-			<artifactId>co.com.experian-sla.dcutil-1.4</artifactId>
-			<version>1.0-SNAPSHOT</version>
-		</dependency>
-
-		<!-- =========================================================================== -->
 		<!-- BASIC HEROKU DEPENDENCIES -->
 		<!-- =========================================================================== -->
 		<dependency>
 			<groupId>com.github.jsimone</groupId>
 			<artifactId>webapp-runner</artifactId>
-			<version>8.0.33.2</version>
+			<version>8.0.30.1</version>
 			<scope>provided</scope>
 		</dependency>
 		<dependency>
@@ -211,6 +186,11 @@
 			<version>1.4</version>
 		</dependency>
 		<dependency>
+			<groupId>org.apache.poi</groupId>
+			<artifactId>poi</artifactId>
+			<version>3.14</version>
+		</dependency>
+		<dependency>
 			<groupId>log4j</groupId>
 			<artifactId>log4j</artifactId>
 			<version>1.2.17</version>
@@ -255,7 +235,46 @@
 			<artifactId>xercesImpl</artifactId>
 			<version>2.4.0</version>
 		</dependency>
+		<!-- =========================================================================== -->
 
+		<!-- =========================================================================== -->
+		<!-- EXPERIAN - LEGACY -->
+		<!-- =========================================================================== -->
+		<!-- <dependency> -->
+		<!-- <groupId>experian-legacy</groupId> -->
+		<!-- <artifactId>dc-charts</artifactId> -->
+		<!-- <version>1.4.0</version> -->
+		<!-- </dependency> -->
+		<!-- <dependency> -->
+		<!-- <groupId>experian-legacy</groupId> -->
+		<!-- <artifactId>xml-reflection</artifactId> -->
+		<!-- <version>1.4.0</version> -->
+		<!-- </dependency> -->
+		<!-- =========================================================================== -->
+
+		<!-- =========================================================================== -->
+		<!-- EXPERIAN - SLA -->
+		<!-- =========================================================================== -->
+		<dependency>
+			<groupId>co.com.experian-sla</groupId>
+			<artifactId>co.com.experian-sla.commons</artifactId>
+			<version>1.0-SNAPSHOT</version>
+		</dependency>
+		<dependency>
+			<groupId>co.com.experian-sla</groupId>
+			<artifactId>co.com.experian-sla.app-hub-api</artifactId>
+			<version>1.0-SNAPSHOT</version>
+		</dependency>
+		<dependency>
+			<groupId>co.com.experian-sla</groupId>
+			<artifactId>co.com.experian-sla.business</artifactId>
+			<version>1.0-SNAPSHOT</version>
+		</dependency>
+		<dependency>
+			<groupId>co.com.experian-sla</groupId>
+			<artifactId>co.com.experian-sla.dcutil-1.4</artifactId>
+			<version>1.0-SNAPSHOT</version>
+		</dependency>
 		<!-- =========================================================================== -->
 
 		<!-- =========================================================================== -->
@@ -321,7 +340,50 @@
 			<artifactId>jfreechart</artifactId>
 			<version>1.0.14</version>
 		</dependency>
+
+		<dependency>
+			<groupId>org.springframework.security</groupId>
+			<artifactId>spring-security-core</artifactId>
+			<version>4.1.3.RELEASE</version>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework.data</groupId>
+			<artifactId>spring-data-redis</artifactId>
+			<version>1.7.4.RELEASE</version>
+		</dependency>
+
+		<dependency>
+			<groupId>org.jsoup</groupId>
+			<artifactId>jsoup</artifactId>
+			<version>1.7.2</version>
+		</dependency>
+
+		<dependency>
+			<groupId>okta</groupId>
+			<artifactId>okta-sdk</artifactId>
+			<version>0.0.4</version>
+		</dependency>
+
+		<dependency>
+			<groupId>eu.bitwalker</groupId>
+			<artifactId>UserAgentUtils</artifactId>
+			<version>1.20</version>
+		</dependency>
+
+		<dependency>
+			<groupId>org.springframework.session</groupId>
+			<artifactId>spring-session</artifactId>
+			<version>1.2.2.RELEASE</version>
+		</dependency>
+		
+		<dependency>
+			<groupId>org.apache.commons</groupId>
+			<artifactId>commons-collections4</artifactId>
+			<version>4.0</version>
+		</dependency>
+
 		<!-- =========================================================================== -->
+
 
 	</dependencies>
 	<build>
@@ -352,6 +414,7 @@
 				<artifactId>heroku-maven-plugin</artifactId>
 				<version>0.5.7</version>
 				<configuration>
+					<appName>dev-experian-sla-ebyington</appName>
 					<includes>
 						<include>target/dependency/newrelic-agent.jar</include>
 					</includes>
